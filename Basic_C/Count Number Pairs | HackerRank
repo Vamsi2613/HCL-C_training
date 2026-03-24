@@ -1,0 +1,17 @@
+int countAffordablePairs(int pc, int* p, int budget) {
+int count=0;
+for(int i=0;i<pc-1;i++)
+{
+    for(int j=i+1;j<pc;j++)
+    {
+        if(p[i]+p[j]<=budget)
+        {
+            count++;
+        }
+        else {
+        break;
+        }
+    }
+}
+return count;
+}
