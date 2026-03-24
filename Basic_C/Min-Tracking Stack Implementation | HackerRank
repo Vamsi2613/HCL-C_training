@@ -1,0 +1,40 @@
+int* processCouponStackOperations(int oc, char** op, int* result_count) {
+    int *res=malloc(oc*sizeof(int));
+    *result_count=0;
+    int *s=malloc(oc*sizeof(int));
+    int *ms= malloc(oc * sizeof(int));
+    int mtop=-1;
+    int top=-1;
+    for(int i=0;i<oc;i++)
+    {
+        if(strcmp(op[i],"pop")==0)
+        {
+            if(s[top]==ms[mtop])
+            {
+                mtop--;
+            }
+            top--;
+        }
+        else if(strcmp(op[i],"getMin")==0)
+        {
+            res[(*result_count)++]=ms[mtop];
+        }
+        else if(strcmp(op[i],"top")==0)
+        {
+            res[(*result_count)++]=s[top];
+        }
+        else
+        {
+            int n;
+            sscanf(op[i], "push %d", &n);
+            if(mtop==-1 || n<=ms[mtop])
+            {
+               ms[++mtop]=n; 
+            }
+            s[++top]=n;
+        }
+    }
+    res=realloc(res,(*result_count)*sizeof(int));
+    return res;
+    
+}
