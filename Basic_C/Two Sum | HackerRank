@@ -1,0 +1,19 @@
+int* findTaskPairForSlot(int taskDurations_count, int* taskDurations, int slotLength, int* result_count) {
+   int *result=malloc(2*sizeof(int));
+   result[0]=-1;
+   result[1]=-1;
+   *result_count=2;
+    for(int i=0;i<taskDurations_count-1;i++)
+    {
+        for(int j=i+1;j<taskDurations_count;j++)
+        {
+            if(taskDurations[i]+taskDurations[j]==slotLength)
+            {
+                result[0]=i;
+                result[1]=j;
+                return result;
+            }
+        }
+    }
+    return result;
+}
